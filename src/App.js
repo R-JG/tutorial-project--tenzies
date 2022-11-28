@@ -1,32 +1,53 @@
 import { React, useState } from 'react';
+import { nanoid } from 'nanoid'
 import Die from './components/Die';
 
 export default function App() {
 
-  const [ diceNumbers, setDiceNumbers ] = useState(createDiceNumbers());
+  const [ dice, setDice ] = useState(createDice());
 
-  function createDiceNumbers() {
-    const diceNumbers = [];
+  function createDice() {
+    const dice = [];
     for (let i = 0; i < 10; i++) {
-      diceNumbers.push(Math.floor(Math.random() * 6 + 1));
+      const randomNumber = Math.floor(Math.random() * 6 + 1);
+      dice.push({
+        id: nanoid(),
+        value: randomNumber, 
+        isHeld: false
+      });
     };
-    return diceNumbers;
+    return dice;
   };
 
   function rollDice() {
-    setDiceNumbers((prevDiceNumbers) => {
-      return createDiceNumbers();
+    setDice((prevDice) => {
+      return createDice();
     });
   };
 
-  const diceArray = diceNumbers.map((number) => (
-    <Die number={number} />
+  function hold(dieId) {
+    setDice((prevDice) => {
+      return prevDice.map((die) => {
+        return (dieId === die.id) 
+        ? {...die, isHeld: true} 
+        : die; 
+      });
+    });
+  };
+
+  const diceComponentArray = dice.map((die) => (
+    <Die 
+      key={die.id} 
+      dieObject={die} 
+      hold={hold} 
+    />
   ));
+
 
   return (
     <main>
-        <div className='die-container'>
-          {diceArray}
+        <div className='dice-container'>
+          {diceComponentArray}
         </div>
         <button className='button--roll' onClick={rollDice}>Roll</button>
     </main>

@@ -29,7 +29,7 @@ main {
   align-items: center;
 }
 
-.die-container {
+.dice-container {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(2, 1fr);
@@ -47,6 +47,10 @@ main {
   align-items: center;
 }
 
+.die.held {
+  background-color: #59E391;
+}
+
 .die .number {
   font-size: 2em;
   font-weight: 700;
@@ -56,15 +60,20 @@ main {
 .button--roll {
   font-size: 1.25em;
   font-weight: 600;
-  padding: 0.5em 2em;
+  padding: 0.65em 2em;
   margin: 3em;
   border-radius: 0.35em;
   border: none;
   box-shadow: 0em 0.15em 0.25em 0.05em rgba(0, 0, 0, 0.15);
   color: #F5F5F5;
   background-color: #4225ff;
+  cursor: pointer;
 }
 
 .button--roll:hover {
   background-color: #784bff;
+}
+
+.button--roll:active {
+  color: #c3b5ff;
 }

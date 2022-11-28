@@ -1,10 +1,14 @@
 import React from 'react';
 
 export default function Die(props) {
-    const { number } = props;
+    const { id, value, isHeld } = props.dieObject;
+    const { hold } = props;
     return (
-        <div className='die'>
-            <div className='number'>{number}</div>
+        <div 
+            className={`die ${isHeld ? 'held' : ''}`}
+            onClick={() => hold(id)}
+        >
+            <div className='number'>{value}</div>
         </div>
     );
 };
