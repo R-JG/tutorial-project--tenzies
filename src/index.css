@@ -29,6 +29,25 @@ main {
   align-items: center;
 }
 
+.text {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.text h1 {
+  font-size: 2.75em;
+  margin: 0.3em;
+}
+
+.text p {
+  font-size: 1.1em;
+  margin-top: 0;
+  margin-bottom: 2.75em;
+  text-align: center;
+}
+
 .dice-container {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
