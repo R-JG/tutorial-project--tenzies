@@ -1,25 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import { React, useState } from 'react';
+import Die from './components/Die';
 
-function App() {
+export default function App() {
+
+  const [ diceNumbers, setDiceNumbers ] = useState(createDiceNumbers());
+
+  function createDiceNumbers() {
+    const diceNumbers = [];
+    for (let i = 0; i < 10; i++) {
+      diceNumbers.push(Math.floor(Math.random() * 6 + 1));
+    };
+    return diceNumbers;
+  };
+
+  function rollDice() {
+    setDiceNumbers((prevDiceNumbers) => {
+      return createDiceNumbers();
+    });
+  };
+
+  const diceArray = diceNumbers.map((number) => (
+    <Die number={number} />
+  ));
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <main>
+        <div className='die-container'>
+          {diceArray}
+        </div>
+        <button className='button--roll' onClick={rollDice}>Roll</button>
+    </main>
   );
-}
-
-export default App;
+};
