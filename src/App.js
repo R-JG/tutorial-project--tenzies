@@ -6,33 +6,41 @@ export default function App() {
 
   const [ dice, setDice ] = useState(createDice());
 
+  function generateNewDie() {
+    const randomNumber = Math.floor(Math.random() * 6 + 1);
+    return {
+      id: nanoid(),
+      value: randomNumber, 
+      isHeld: false
+    };
+  };
+
   function createDice() {
     const dice = [];
     for (let i = 0; i < 10; i++) {
-      const randomNumber = Math.floor(Math.random() * 6 + 1);
-      dice.push({
-        id: nanoid(),
-        value: randomNumber, 
-        isHeld: false
-      });
+      dice.push(generateNewDie());
     };
     return dice;
   };
 
   function rollDice() {
-    setDice((prevDice) => {
-      return createDice();
-    });
+    setDice((prevDice) => 
+      prevDice.map((die) => {
+        return (die.isHeld) 
+        ? die 
+        : generateNewDie();
+      })
+    );
   };
 
   function hold(dieId) {
-    setDice((prevDice) => {
-      return prevDice.map((die) => {
+    setDice((prevDice) => 
+      prevDice.map((die) => {
         return (dieId === die.id) 
-        ? {...die, isHeld: true} 
+        ? {...die, isHeld: !die.isHeld} 
         : die; 
-      });
-    });
+      })
+    );
   };
 
   const diceComponentArray = dice.map((die) => (
