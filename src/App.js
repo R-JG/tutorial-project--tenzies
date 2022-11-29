@@ -9,14 +9,15 @@ import Confetti from 'react-confetti';
 export default function App() {
 
     const [ dice, setDice ] = useState(createDice());
-    const [ tenzies, setTenzies ] = useState(false);
+    const [ gameState, setGameState ] = useState('setup');
+    const [ scoreboard, setScoreboard ] = useState([]);
 
     useEffect(() => {
         const firstDieNumber = dice[0].value;
         const allEqualAndHeld = dice.every((die) => 
             (die.value === firstDieNumber && die.isHeld));
         if (allEqualAndHeld) {
-            setTenzies(true);
+            setGameState('tenzies');
         };
     }, [dice]);
 
@@ -59,21 +60,32 @@ export default function App() {
 
     function resetGame() {
         setDice(createDice());
-        setTenzies(false);
+        setGameState('setup');
+    };
+
+    function updateScoreboard(newScore) {
+        setScoreboard((prevScoreboard) => {
+            return [...prevScoreboard, newScore];
+        });
     };
 
     return (
         <main>
-            {tenzies && <Confetti />}
-            <Scoreboard />
+            {(gameState === 'tenzies') && <Confetti />}
+            <Scoreboard 
+                scoreboardData={scoreboard} 
+            />
             <Game 
                 dice={dice} 
-                tenzies={tenzies}
+                gameState={gameState}
+                setGameState={setGameState}
                 hold={hold}
                 rollDice={rollDice}
                 resetGame={resetGame}
             />
-            <Timer />
+            <Timer 
+                updateScoreboard={updateScoreboard} 
+            />
         </main>
     );
 };

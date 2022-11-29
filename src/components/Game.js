@@ -3,15 +3,51 @@ import Die from './Die';
 
 export default function Game(props) {
 
-    const { dice, tenzies, hold, rollDice, resetGame } = props;
+    const { 
+        dice, 
+        gameState, 
+        setGameState, 
+        hold, 
+        rollDice, 
+        resetGame 
+        } 
+    = props;
 
     const diceComponentArray = dice.map((die) => (
         <Die 
-          key={die.id} 
-          dieObject={die} 
-          hold={hold} 
+            key={die.id} 
+            dieObject={die} 
+            gameState={gameState}
+            hold={hold} 
         />
     ));
+
+    function gameStateButtonLogic() {
+        switch (gameState) {
+            case 'playing':
+                rollDice();
+                break;
+            case 'setup':
+                setGameState('playing');
+                break;
+            case 'tenzies':
+                resetGame();
+                break;
+            default:
+        };
+    };
+
+    function renderButtonText() {
+        switch (gameState) {
+            case 'playing':
+                return 'Roll';
+            case 'setup':
+                return 'Start';
+            case 'tenzies':
+                return 'New Game';
+            default:
+        };
+    };
 
     return (
         <div className='game'>
@@ -26,9 +62,9 @@ export default function Game(props) {
             </div>
             <button 
                 className='button--roll' 
-                onClick={tenzies ? resetGame : rollDice}
+                onClick={gameStateButtonLogic}
             > 
-                {tenzies ? 'New Game' : 'Roll'}
+                {renderButtonText()}
             </button>
         </div>
     );

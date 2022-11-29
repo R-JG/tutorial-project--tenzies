@@ -2,13 +2,13 @@ import React from 'react';
 
 export default function Die(props) {
     const { id, value, isHeld } = props.dieObject;
-    const { hold } = props;
+    const { gameState, hold } = props;
     return (
         <div 
             className={`die ${isHeld ? 'held' : ''}`}
-            onClick={() => hold(id)}
+            onClick={(gameState !== 'setup') && (() => hold(id))}
         >
-            <div className='number'>{value}</div>
+            <div className='number'>{(gameState !== 'setup') && value}</div>
         </div>
     );
 };
