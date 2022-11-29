@@ -105,6 +105,12 @@ main {
   color: #c3b5ff;
 }
 
+.scoreboard {
+  font-size: 2em;
+  color: #F5F5F5;
+  background-color: #16374b;
+}
+
 .timer {
   font-size: 3em;
   width: 2em;

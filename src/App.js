@@ -65,7 +65,8 @@ export default function App() {
 
     function updateScoreboard(newScore) {
         setScoreboard((prevScoreboard) => {
-            return [...prevScoreboard, newScore];
+            const newArray = [...prevScoreboard, newScore];
+            return newArray.sort((a, b) => a - b);
         });
     };
 
