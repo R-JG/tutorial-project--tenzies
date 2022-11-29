@@ -1,4 +1,4 @@
-import { React, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { nanoid } from 'nanoid'
 import Game from './components/Game';
 import Scoreboard from './components/Scoreboard';
@@ -84,6 +84,7 @@ export default function App() {
                 resetGame={resetGame}
             />
             <Timer 
+                gameState={gameState}
                 updateScoreboard={updateScoreboard} 
             />
         </main>

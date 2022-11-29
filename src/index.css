@@ -16,6 +16,13 @@ code {
     monospace;
 }
 
+main {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
 .game {
   height: 30rem;
   width: 30rem;
@@ -77,7 +84,7 @@ code {
   color: #0B2434;
 }
 
-.button--roll {
+.button {
   font-size: 1.25em;
   font-weight: 600;
   padding: 0.65em 2em;
@@ -90,10 +97,18 @@ code {
   cursor: pointer;
 }
 
-.button--roll:hover {
+.button:hover {
   background-color: #784bff;
 }
 
-.button--roll:active {
+.button:active {
   color: #c3b5ff;
+}
+
+.timer {
+  font-size: 3em;
+  width: 2em;
+  color: #F5F5F5;
+  background-color: #16374b;
+  text-align: center;
 }

@@ -61,7 +61,7 @@ export default function Game(props) {
                 {diceComponentArray}
             </div>
             <button 
-                className='button--roll' 
+                className='button' 
                 onClick={gameStateButtonLogic}
             > 
                 {renderButtonText()}

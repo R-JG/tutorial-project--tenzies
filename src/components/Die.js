@@ -6,7 +6,7 @@ export default function Die(props) {
     return (
         <div 
             className={`die ${isHeld ? 'held' : ''}`}
-            onClick={(gameState !== 'setup') && (() => hold(id))}
+            onClick={(gameState === 'playing') ? (() => hold(id)) : undefined}
         >
             <div className='number'>{(gameState !== 'setup') && value}</div>
         </div>
