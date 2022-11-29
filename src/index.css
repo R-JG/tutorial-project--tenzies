@@ -36,19 +36,19 @@ main {
   align-items: center;
 }
 
-.text {
+.game .text {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
 }
 
-.text h1 {
+.game .text h1 {
   font-size: 2.75em;
   margin: 0.3em;
 }
 
-.text p {
+.game .text p {
   font-size: 1.1em;
   margin-top: 0;
   margin-bottom: 2.75em;
@@ -107,14 +107,43 @@ main {
 
 .scoreboard {
   font-size: 2em;
+  height: 30rem;
+  width: 10rem;
+  padding: 1em;
+  margin: 3rem;
   color: #F5F5F5;
   background-color: #16374b;
+  border-radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.scoreboard .title {
+  font-size: 0.55em;
+  margin-bottom: 0.1em;
+}
+
+.scoreboard hr {
+  width: 80%;
+  border: 0.02em solid #F5F5F5;
+}
+
+.scoreboard .score {
+  margin: 0.1em;
 }
 
 .timer {
   font-size: 3em;
-  width: 2em;
+  height: 10rem;
+  width: 10rem;
+  margin: 3rem;
+  border-radius: 0.5rem;
   color: #F5F5F5;
   background-color: #16374b;
   text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

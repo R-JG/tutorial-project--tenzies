@@ -28,7 +28,7 @@ export default function Timer(props) {
 
     return (
         <div className='timer'>
-            {formattedTime}
+            <div>{formattedTime}</div>
         </div>
     );
 };
