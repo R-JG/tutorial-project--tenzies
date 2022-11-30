@@ -10,7 +10,10 @@ export default function App() {
 
     const [ dice, setDice ] = useState(createDice());
     const [ gameState, setGameState ] = useState('setup');
-    const [ scoreboard, setScoreboard ] = useState([]);
+    const [ scoreboard, setScoreboard ] = useState(
+        JSON.parse(localStorage.getItem('high-scores')) 
+        || []
+    );
 
     useEffect(() => {
         const firstDieNumber = dice[0].value;
@@ -20,6 +23,10 @@ export default function App() {
             setGameState('tenzies');
         };
     }, [dice]);
+
+    useEffect(() => {
+        localStorage.setItem('high-scores', JSON.stringify(scoreboard));
+    }, [scoreboard]);
 
     function generateNewDie() {
         const randomNumber = Math.floor(Math.random() * 6 + 1);
@@ -66,7 +73,9 @@ export default function App() {
     function updateScoreboard(newScore) {
         setScoreboard((prevScoreboard) => {
             const newArray = [...prevScoreboard, newScore];
-            return newArray.sort((a, b) => a - b);
+            const sortedArray = newArray.sort((a, b) => a - b);
+            if (sortedArray.length > 10) sortedArray.pop();
+            return sortedArray;
         });
     };
 
